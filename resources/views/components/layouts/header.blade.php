@@ -5,7 +5,7 @@
     <h1 class="text-5xl text-titulo">GESTION DE INSTITUTO</h1>
 
     <div class="space-x-2">
-        <button class="btn btn-sm btn-primary">Login</button>
+        <a href="login"><button class="btn btn-sm btn-primary">Login</button></a>
         <button class="btn btn-sm btn-primary">Register</button>
     </div>
 
