@@ -1,3 +1,3 @@
 <x-layouts.layout>
-    Estoy en main
+    Esta es la página main
 </x-layouts.layout>
