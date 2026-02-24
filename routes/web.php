@@ -7,20 +7,30 @@ Route::get('/', function () {
     return view('main');
 })->name("main");
 
-Route::view("about","about");
-Route::view("noticias","noticias");
-Route::view("alumnos","alumnos");
-Route::view("profesores","profesores");
+Route::view("sobre_nosotros", "about")->name("about");
+Route::view("noticias", "noticias");
+Route::view("alumnos", "alumnos");
+Route::view("profesores", "profesores");
+
+
+//Pruebas
+Route::get("/alumno/{numero?}/{seccion?}", fn($numero =10, $seccion="nada" ) => view("alumno", ["numero" => $numero, "seccion" => $seccion]));
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//Route::middleware('auth')->group(function () {
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//});
+
+Route::fallback(function () {
+    $url = request()->path();
+    return ("<h1>Esta página $url no existe");
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
