@@ -1,5 +1,4 @@
 <x-layouts.layout>
-    @guest
     <div
         class="hero min-h-full"
         style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);"
@@ -9,15 +8,13 @@
             <div class="max-w-md">
                 <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
                 <p class="mb-5">
-                    Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                    quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    {{date("H:m:s")}}
+
+                    Usuario conectado {{$nombre}}
+                    <h2>Número generado <span class="text-3xl text-red-100  ">{{$numero}}</h2>
                 </p>
                 <button class="btn btn-primary">Get Started</button>
             </div>
         </div>
     </div>
-        @endguest
-    @auth
-        <h1>Estás registrado</h1>
-    @endauth
 </x-layouts.layout>
