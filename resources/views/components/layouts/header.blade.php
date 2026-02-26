@@ -1,8 +1,8 @@
 <header class="h-header bg-header flex flex-row justify-between items-center p-3">
-
+<h1>{{__("EX1")}}</h1>
     <img class="max-h-full" src="{{asset("/images/logo.png")}}" alt="logo">
 
-    <h1 class="text-5xl text-titulo">GESTION DE INSTITUTO</h1>
+    <h1 class="text-5xl text-titulo">{{__("GESTION DE INSTITUTO")}}</h1>
     <div class="space-x-2">
         <form action="{{route("set_lang")}}" method="POST">
             @csrf
@@ -18,10 +18,10 @@
         @guest
 
             <a href="{{route("login")}}">
-                <button class="btn btn-sm btn-primary">Login</button>
+                <button class="btn btn-sm btn-primary">{{__("Login")}}</button>
             </a>
             <a href="{{route("register")}}">
-                <button class="btn btn-sm btn-primary">Register</button>
+                <button class="btn btn-sm btn-primary">{{__("Register")}}</button>
             </a>
 
         @endguest

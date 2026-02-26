@@ -11,11 +11,14 @@ class LangController extends Controller
      */
     public function __invoke(Request $request)
     {
-        ;
+
         $lang = request()->input("lang");
+        session()->put('lang', $lang);
+        info ("En controlador con idioma seleccionado $lang");
+        info ("En controlador variables de sesion", session()->all());
 
+        return redirect()->back();
 
-        echo "<h1>HE seleccionado un nuevo idioma $lang</h1>";
         //
     }
 }
