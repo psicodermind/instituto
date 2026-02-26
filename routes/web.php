@@ -4,6 +4,7 @@ use App\Http\Controllers\MainController;
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LangController;
 
 
 
@@ -35,5 +36,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 Route::fallback(function () {
     $url = request()->path();
-    return ("<h1>Esta página $url no existe");
+    return ("<h1>Esta página $url no existe</h1>");
 });
+//Route::post("set_lang", [LangController::class, "__invoke"]);
+Route::post("set_lang",LangController::class)->name("set_lang");

@@ -4,6 +4,17 @@
 
     <h1 class="text-5xl text-titulo">GESTION DE INSTITUTO</h1>
     <div class="space-x-2">
+        <form action="{{route("set_lang")}}" method="POST">
+            @csrf
+            <select name="lang" id="lang"
+            onchange="this.form.submit()">
+                {{--            HAcer que el option sea un submit--}}
+                <option selected disabled>{{__("Selecciona idioma")}}</option>
+                @foreach(config("langs") as $lang => $detail)
+                    <option value="{{$lang}}">{{$detail['name']}}&nbsp&nbsp&nbsp {{$detail['flag']}}  </option>
+                @endforeach
+            </select>
+        </form>
         @guest
 
             <a href="{{route("login")}}">
