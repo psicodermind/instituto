@@ -4,7 +4,7 @@ h-header bg-header
 ">
     <img class="max-h-full" src="{{asset("/images/logo.png")}}" alt="logo">
 
-    <h1 class="text-5xl text-titulo">{{__("GESTION DE INSTITUTO")}}</h1>
+    <h1 class=" text-3xl xl:text-5xl text-titulo">{{__("GESTION DE INSTITUTO")}}</h1>
     <div class="space-x-2">
         <form action="{{route("set_lang")}}" method="POST">
             @csrf
@@ -49,6 +49,11 @@ h-header bg-header
 
         @guest
             <div class="relative">
+
+                <input type="checkbox" class="peer sr-only" id="menu_login">
+                <label for="menu_login">
+                    <img class="w-6 h-6 " src="{{asset("/images/burguer.png")}}" alt="burguer button">
+                </label>
                 <label for="menu_login" class="fixed inset-0 bg-black/40
                             opacity-0 pointer-events-none
                             peer-checked:opacity-100
@@ -56,10 +61,6 @@ h-header bg-header
                             transition-opacity duration-300
                     "></label>
 
-                <label for="menu_login">
-                    <img class="w-6 h-6 " src="{{asset("/images/burguer.png")}}" alt="burguer button">
-                </label>
-                <input type="checkbox" class="peer sr-only" id="menu_login">
                 <div class="hidden peer-checked:flex  flex-col  absolute left-8 ">
                     <a href="{{route("login")}}">
                         <button class="btn btn-sm btn-primary">{{__("Login")}}</button>
@@ -79,7 +80,7 @@ h-header bg-header
                 @csrf
 
                     @foreach(config("langs") as $lang => $detail)
-                        <button type="submit" value="{{$lang}}">{{$detail['flag']}}  </button>
+                        <button type="submit" name="lang" value="{{$lang}}">{{$detail['flag']}}  </button>
                     @endforeach
                 </select>
             </form>
