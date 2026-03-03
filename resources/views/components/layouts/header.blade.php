@@ -45,8 +45,30 @@ h-header bg-header
 ">
     <img class="max-h-full w-48 " src="{{asset("/images/logo.png")}}" alt="logo">
 
-    <div class=" flex flex-col space-y-3 ">
+    <div class=" flex flex-row space-x-3  ">
 
+        <div class="relative z-50">
+            <input type="checkbox" class="peer sr-only" id="menu_lang">
+            <label for="menu_lang">
+                <img class="w-6 h-6 " src="{{asset("/images/lang.png")}}" alt="burguer button">
+            </label>
+            <label for="menu_lang" class="fixed inset-0 bg-black/40
+                            opacity-0 pointer-events-none
+                            peer-checked:opacity-100
+                            peer-checked:pointer-events-auto
+                            transition-opacity duration-300
+                    "></label>
+            <form action="{{route("set_lang")}}" method="POST" class="hidden peer-checked:flex flex-col absolute left-0 top-8 bg-white p-2 z-50">
+                @csrf
+
+                @foreach(config("langs") as $lang => $detail)
+                    <button type="submit" name="lang" value="{{$lang}}" class="px-2 z-50 py-1 hover:bg-gray-100 rounded text-left">{{$detail['flag']}}
+                    </button>
+                    @endforeach
+                    </select>
+            </form>
+
+        </div>
         @guest
             <div class="relative">
 
@@ -71,21 +93,59 @@ h-header bg-header
                 </div>
             </div>
     @endguest
-        <div class="relative">
-            <label for="menu_lang">
-                <img class="w-6 h-6 " src="{{asset("/images/lang.png")}}" alt="burguer button">
-            </label>
-            <input type="checkbox" class="peer sr-only" id="menu_lang">
-            <form action="{{route("set_lang")}}" method="POST" class="hidden peer-checked:flex flex-col absolute left-6 top-0 bg-white p-2">
-                @csrf
+            @auth
+                <div class="relative z-50">
 
-                    @foreach(config("langs") as $lang => $detail)
-                        <button type="submit" name="lang" value="{{$lang}}">{{$detail['flag']}}  </button>
-                    @endforeach
-                </select>
-            </form>
+                    {{-- Checkbox controlador --}}
+                    <input type="checkbox" class="peer hidden" id="menu_user">
 
-        </div>
+                    {{-- Botón usuario --}}
+                    <label for="menu_user"
+                           class="flex items-center gap-1 cursor-pointer
+                      px-3 py-1 rounded bg-gray-100
+                      hover:bg-gray-200 transition">
+
+            <span class="text-green-800 font-semibold">
+                {{ auth()->user()->name }}
+            </span>
+
+                        {{-- Flecha --}}
+                        <svg class="w-4 h-4 transition-transform duration-200
+                        peer-checked:rotate-180"
+                             fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </label>
+
+                    {{-- Overlay --}}
+                    <label for="menu_user"
+                           class="fixed inset-0 bg-black/30
+                      opacity-0 pointer-events-none
+                      peer-checked:opacity-100
+                      peer-checked:pointer-events-auto
+                      transition-opacity duration-300">
+                    </label>
+
+                    {{-- Dropdown --}}
+                    <div class="hidden peer-checked:flex flex-col
+                    absolute right-0 mt-2
+                    bg-white shadow-lg rounded p-2 min-w-[120px]">
+
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                    class="btn btn-sm btn-primary w-full">
+                                Logout
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            @endauth
+
 
 </header>
 
