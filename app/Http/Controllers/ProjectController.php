@@ -9,10 +9,16 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the all projects
      */
     public function index()
     {
+
+        $projects = Project::all();
+        return view('projects.index', ['projects' => $projects]);
+//        return view('projects.index', compact('projects'));
+
+
         //
     }
 

@@ -29,17 +29,18 @@
                      overflow-y-auto">
 
                 {{-- Ejemplo de tarjetas --}}
-                <div class="card bg-base-100 image-full w-96 shadow-sm">
+                <div class="card bg-base-100  w-96 shadow-sm">
                     <figure>
                         <img
-                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                            src="{{asset("/images/projects.png")}}"
                             alt="Shoes" />
                     </figure>
                     <div class="card-body">
-                        <h2 class="card-title">Card Title</h2>
-                        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                        <h2 class="card-title">Gestión de proyectos</h2>
+                        <p>Aquí vamos a realizar un CRUD completo de proyectos</p>
                         <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <a href="{{route("projects.index")}}" class="btn btn-primary">Ver proyectos</a>
+{{--                            <a href="/projects" class="btn btn-primary">Ver proyectos</a>--}}
                         </div>
                     </div>
                 </div>
