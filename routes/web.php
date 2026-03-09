@@ -4,6 +4,7 @@ use App\Http\Controllers\MainController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LangController;
 
@@ -42,4 +43,10 @@ Route::fallback(function () {
 //Route::post("set_lang", [LangController::class, "__invoke"]);
 Route::post("set_lang",LangController::class)->name("set_lang");
 
-Route::resource("projects", ProjectController::class);
+Route::resource("projects", ProjectController::class)->middleware('auth');
+Route::resource("teachers", TeacherController::class)->middleware('auth');
+
+
+
+
+
