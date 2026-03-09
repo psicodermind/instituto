@@ -8,7 +8,7 @@
 <div class="card bg-base-100 w-96 shadow-sm">
     <figure>
         <img
-            
+
             src="{{$img}}"
             alt="{{$title}}" />
     </figure>

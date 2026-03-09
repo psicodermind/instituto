@@ -15,12 +15,16 @@ class ProjectController extends Controller
     {
         //Obtener todos los proyectos
         $projects = Project::all();
+        $campos =
+            [
+            "name" => "Nombre",
+            "description" => "Descripción",
+            "start_date" => "Fecha de inicio",
+            "hours" => "Horas"];
 
         //Devolver un html  donde los  muestre, retornaré la vista y le paso los proyectos
 //        return view('projects.index',['projects'=>$projects]);
-        return view('projects.index',compact('projects'));
-
-
+        return view('projects.index', compact('projects', 'campos'));
 
 
         //
@@ -61,7 +65,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit',compact('project'));
+        return view('projects.edit', compact('project'));
         //
     }
 
