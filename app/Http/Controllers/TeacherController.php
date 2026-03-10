@@ -14,12 +14,9 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::all();
-        $campos = [
-            "name"=> "Nombre",
-            "phone"=> "Telefono",
-            "email"=> "Correo",
-            "department"=> "Departamento",
-        ];
+        $campos =Teacher::getLabels();
+
+
         return view('teachers.index', compact('teachers', 'campos'));
         //
     }

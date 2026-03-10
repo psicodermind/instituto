@@ -16,14 +16,11 @@ class TeacherFactory extends Factory
      */
     public function definition(): array
     {
-        $departments = config('departments');
-        $department = $departments[array_rand($departments)];
-
         return [
             "name" => $this->faker->name(),
             "email" => $this->faker->unique()->safeEmail(),
             "phone" => $this->faker->phoneNumber(),
-            "department" =>$department
+            "department" =>$this->faker->randomElement(config("departments")),
             //
         ];
     }
