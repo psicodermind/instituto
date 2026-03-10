@@ -94,7 +94,53 @@ algo del estilo:
 En nuestro caso hemos creado un componente llamado crud que se puede ver en el código
 
 
-### 4.2. Read (Obtener todos los registros)
+### 4.2. Crear un recurso
+Es una acción de dos pasos, primero que me retorne el formulario para crear elemento y después guadarlo
+
+1.- teachers/create => create => formulario vacío
+2.- teachers/store (POST) => store => guardo el registro en la bd
+
+```php
+public function create()
+    {
+        return view('teachers.create');
+        //
+    }
+```
+
+*Ahora tengo que crear un formulario con cajas de texto para cada campo de la tabla
+*Lo funcamental es que el name sea el nombre del atributo
+ Ver resources/view/teachers/create.blade.php
+
+El método store, se ejecuta al presionar el submit
+
+```php
+ public function store(StoreTeacherRequest $request)
+    {
+        $datos = $request->input();
+        Teacher::create($datos);
+        return redirect()->route('teachers.index');
+        //
+    }
+```
+
+Hay que tener en cuenta, autorizar la acción y crear el fillable en el modelo
+
+Autorizar la acción se hace en app/Request/StoreTeacerhRequest.php
+```php
+ public function authorize(): bool
+    {
+        return true;
+    }
+```
+
+Fillable estable qué campos de la tabla permito que se inserten en grupo o de forma masiva
+
+Se hace en el model App/Models/Teacher.php
+```php
+   protected $fillable = ['name', 'phone','department','email'];
+```
+
 
 
 

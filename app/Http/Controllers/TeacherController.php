@@ -26,6 +26,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        return view('teachers.create');
         //
     }
 
@@ -34,6 +35,9 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
+        $datos = $request->input();
+        Teacher::create($datos);
+        return redirect()->route('teachers.index');
         //
     }
 
