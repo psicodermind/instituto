@@ -13,7 +13,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::paginate(5);
         $campos =Teacher::getLabels();
 
 
@@ -54,6 +54,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
+        return view('teachers.edit', compact('teacher'));
         //
     }
 
@@ -62,6 +63,10 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
+        $datos = $request->input();
+        $teacher->update($datos);
+        return redirect()->route('teachers.index');
+
         //
     }
 
@@ -70,6 +75,9 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $teacher->delete();
+        return redirect()->route('teachers.index');
+
         //
     }
 }

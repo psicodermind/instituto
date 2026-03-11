@@ -3,7 +3,6 @@
     'campos'=>[], //Array asociativo con nombre_campos => titulo para la tabla ("start_date"=>"Fecha de comienzo")
     'filas'=>[] //Un array de objetos
 ])
-
 <a href="{{route("$resource.create")}}" class="btn btn-primary">Añadir {{strtoupper($resource)}}</a>
 <div class="flex justify-center ">
     <div class="overflow-x-auto h-96 ">
@@ -44,5 +43,6 @@
 
             </tbody>
         </table>
+        {{$filas->links("pagination::personal-tailwind")}}
     </div>
 </div>

@@ -142,6 +142,13 @@ Se hace en el model App/Models/Teacher.php
 ```
 
 
+## 4.3 Modificar un recurso
+Esta acción es una acción de dos pasos:
+
+1. Dame un formulario con los datos del profesor que quiero modificar
+2. Cuando presione el submit, modifica los datos
+
+1.- GET /teachers/{id}/edit => edit => una vista con el formulario y datos
 
 
 
