@@ -1,8 +1,11 @@
 @props([
     'resource'=>"",
     'campos'=>[], //Array asociativo con nombre_campos => titulo para la tabla ("start_date"=>"Fecha de comienzo")
-    'filas'=>[] //Un array de objetos
+    'filas'=>[], //Un array de objetos
+    'page'=>$_GET['page']??1
 ])
+
+
 <a href="{{route("$resource.create")}}" class="btn btn-primary">Añadir {{strtoupper($resource)}}</a>
 <div class="flex justify-center ">
     <div class="overflow-x-auto h-96 ">
@@ -26,7 +29,8 @@
                         <td>{{$fila->{$atributo} }}</td>
                     @endforeach
                         <td>
-                            <form action="{{route("$resource.destroy",$fila->id)}}" method="POST">
+                            <form action="{{route("$resource.destroy",$fila->id)}}?page={{$page}}" method="POST">
+                            <form action="/teachers/delete/{{$fila->id}}?page={{$page}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" value="Borrar" class="btn btn-warning"
@@ -35,7 +39,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href="{{route("$resource.edit", $fila->id)}}" class="btn btn-primary">Editar</a>
+                            <a href="{{route("$resource.edit", $fila->id)}}?page={{$page}}" class="btn btn-primary">Editar</a>
                         </td>
 
                 </tr>
@@ -43,6 +47,6 @@
 
             </tbody>
         </table>
-        {{$filas->links("pagination::personal-tailwind")}}
+        {{$filas->links()}}
     </div>
 </div>

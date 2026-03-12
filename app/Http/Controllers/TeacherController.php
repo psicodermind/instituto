@@ -11,9 +11,11 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $page=1)
     {
-        $teachers = Teacher::paginate(5);
+//        dd($page);
+
+        $teachers = Teacher::Paginate(5);
         $campos =Teacher::getLabels();
 
 
@@ -54,7 +56,9 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        return view('teachers.edit', compact('teacher'));
+        $page = request()->get("page");
+
+        return view('teachers.edit', compact('teacher', 'page'));
         //
     }
 
@@ -63,9 +67,10 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
+        $page = request()->get("page");
         $datos = $request->input();
         $teacher->update($datos);
-        return redirect()->route('teachers.index');
+        return redirect()->route('teachers.index',['page'=>$page]);
 
         //
     }
@@ -75,8 +80,17 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $page = request()->get('page');
+
+        $lastpage = Teacher::paginate()->lastPage();
+        if ($page > $lastpage) {
+            $page--;
+        }
+
+
         $teacher->delete();
-        return redirect()->route('teachers.index');
+        return redirect()->route('teachers.index', ['page'=>$page]);
+//        return redirect()->back();
 
         //
     }
