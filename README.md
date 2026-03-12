@@ -1,59 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Realizando un crud
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1.- Creo el ecosistema de las clases que necesito
 
-## About Laravel
+```bash
+php artisan make:model Teacher --all
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 2.- Añado las rutas (REST API)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+escribo en /routes/web.php
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```php
+use App\Http\Controllers\TeacherController;
+Route::resource("teachers", TeacherController::class)
+```
 
-## Learning Laravel
+## 3- Creamos la BD y la poblamos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Todo esto están en migraciones, factory y seeders de la carpeta database
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3.1 Crear la tabla (migration)
 
-## Laravel Sponsors
+```php
+public function up(): void
+    {
+     Schema::create('teachers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('department');
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->timestamps();
+        });
+}
+```
+### 3.2 La poblamos (factory)
+Para el campo departamento hemos creado un fichero en config llamado **/config/departments.php**
+```php
+    public function definition(): array
+    {
+        return [
+            "name" => fake()->name(),
+            "email" => $this->faker->unique()->safeEmail(),
+            "phone" => $this->faker->phoneNumber(),
+            "department" =>$this->faker->randomElement(config("departments")),
+            //
+        ];
+    }
+```
+### 3.3 Inserto en la tabla de la BD (seeder)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```php
+ public function run(): void
+    {
+        Teacher::factory()->count(10)->create();
+    }
 
-### Premium Partners
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 4.- Escribo el código de los métodos
+Vamos a seguir el modle MVC => ante una solicitud o ruta =>Ejecuto un controlador =>que con el modelo accede a la BD => retorna una vista
 
-## Contributing
+Ruta => Contronlador => Model(BD)=> Vista (html)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Esto me permite implementar CRUD (Crear Read Update Delete)
+### 4.1. Read (Obtener todos los registros)
+Ruta URL /teachers
+Ruta Nombre teachres.index
+Método index()
+```php
+    $teachers = Teacher::all();
+    $campos =Teacher::getLabels();
+    return view('teachers.index', compact('teachers', 'campos'));
+```
+La vista es una tabla donde renderizaré el contendio de las filas
+algo del estilo:
+```html
+<table>
+    <tr>
+        <th>Nombre</th>
+        .....
+    </tr>
+    @foreach($teachers as $teacher)
+        <tr>
+            <td>{{$teacher->name}}</td>
+            ....
+        </tr>
+        
+    @endforeach
+</table>
 
-## Code of Conduct
+```
+En nuestro caso hemos creado un componente llamado crud que se puede ver en el código
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+### 4.2. Crear un recurso
+Es una acción de dos pasos, primero que me retorne el formulario para crear elemento y después guadarlo
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1.- teachers/create => create => formulario vacío
+2.- teachers/store (POST) => store => guardo el registro en la bd
 
-## License
+```php
+public function create()
+    {
+        return view('teachers.create');
+        //
+    }
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+*Ahora tengo que crear un formulario con cajas de texto para cada campo de la tabla
+*Lo funcamental es que el name sea el nombre del atributo
+Ver resources/view/teachers/create.blade.php
+
+El método store, se ejecuta al presionar el submit
+
+```php
+ public function store(StoreTeacherRequest $request)
+    {
+        $datos = $request->input();
+        Teacher::create($datos);
+        return redirect()->route('teachers.index');
+        //
+    }
+```
+
+Hay que tener en cuenta, autorizar la acción y crear el fillable en el modelo
+
+Autorizar la acción se hace en app/Request/StoreTeacerhRequest.php
+```php
+ public function authorize(): bool
+    {
+        return true;
+    }
+```
+
+Fillable estable qué campos de la tabla permito que se inserten en grupo o de forma masiva
+
+Se hace en el model App/Models/Teacher.php
+```php
+   protected $fillable = ['name', 'phone','department','email'];
+```
+
+
+## 4.3 Modificar un recurso
+Esta acción es una acción de dos pasos:
+
+1. Dame un formulario con los datos del profesor que quiero modificar
+2. Cuando presione el submit, modifica los datos
+
+1.- GET /teachers/{id}/edit => edit => una vista con el formulario y datos
+
+
+
+
+
+
+

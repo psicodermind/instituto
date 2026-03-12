@@ -9,10 +9,24 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the all projects
      */
     public function index()
     {
+        //Obtener todos los proyectos
+        $projects = Project::paginate(5);
+        $campos =
+            [
+                "name" => "Nombre",
+                "description" => "Descripción",
+                "start_date" => "Fecha de inicio",
+                "hours" => "Horas"];
+
+        //Devolver un html  donde los  muestre, retornaré la vista y le paso los proyectos
+//        return view('projects.index',['projects'=>$projects]);
+        return view('projects.index', compact('projects', 'campos'));
+
+
         //
     }
 
@@ -21,6 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        return view('projects.create');
         //
     }
 
@@ -29,6 +44,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        $datos = $request->validated();
+        Project::create($datos);
+        return redirect()->route('projects.index');
+
+
         //
     }
 
@@ -45,6 +65,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        return view('projects.edit', compact('project'));
         //
     }
 
@@ -53,7 +74,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $datos = $request->except(['_token', '_method']);  // ← cambiar esta línea
+        $project->update($datos);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -61,6 +84,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->delete();
+        return redirect()->route('projects.index');
+
+
         //
     }
 }

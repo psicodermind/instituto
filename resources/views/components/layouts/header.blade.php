@@ -92,16 +92,16 @@ h-header bg-header
                     </a>
                 </div>
             </div>
-    @endguest
-            @auth
-                <div class="relative z-50">
+        @endguest
+        @auth
+            <div class="relative z-50">
 
-                    {{-- Checkbox controlador --}}
-                    <input type="checkbox" class="peer hidden" id="menu_user">
+                {{-- Checkbox controlador --}}
+                <input type="checkbox" class="peer hidden" id="menu_user">
 
-                    {{-- Botón usuario --}}
-                    <label for="menu_user"
-                           class="flex items-center gap-1 cursor-pointer
+                {{-- Botón usuario --}}
+                <label for="menu_user"
+                       class="flex items-center gap-1 cursor-pointer
                       px-3 py-1 rounded bg-gray-100
                       hover:bg-gray-200 transition">
 
@@ -109,43 +109,42 @@ h-header bg-header
                 {{ auth()->user()->name }}
             </span>
 
-                        {{-- Flecha --}}
-                        <svg class="w-4 h-4 transition-transform duration-200
+                    {{-- Flecha --}}
+                    <svg class="w-4 h-4 transition-transform duration-200
                         peer-checked:rotate-180"
-                             fill="none" stroke="currentColor" stroke-width="2"
-                             viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </label>
+                         fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </label>
 
-                    {{-- Overlay --}}
-                    <label for="menu_user"
-                           class="fixed inset-0 bg-black/30
+                {{-- Overlay --}}
+                <label for="menu_user"
+                       class="fixed inset-0 bg-black/30
                       opacity-0 pointer-events-none
                       peer-checked:opacity-100
                       peer-checked:pointer-events-auto
                       transition-opacity duration-300">
-                    </label>
+                </label>
 
-                    {{-- Dropdown --}}
-                    <div class="hidden peer-checked:flex flex-col
+                {{-- Dropdown --}}
+                <div class="hidden peer-checked:flex flex-col
                     absolute right-0 mt-2
                     bg-white shadow-lg rounded p-2 min-w-[120px]">
 
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                    class="btn btn-sm btn-primary w-full">
-                                Logout
-                            </button>
-                        </form>
-
-                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                                class="btn btn-sm btn-primary w-full">
+                            Logout
+                        </button>
+                    </form>
 
                 </div>
-            @endauth
+
+            </div>
+    @endauth
 
 
 </header>
-
