@@ -5,5 +5,6 @@ px-5 justify-start items-center lg:space-x-2 ">
     @auth
         <a href="/projects" class="btn btn-glass w-full lg:w-auto">Projectos</a>
         <a href="/teachers" class="btn btn-glass w-full lg:w-auto">Profesores</a>
+        <a href="/students" class="btn btn-glass w-full lg:w-auto">Estudiantes</a>
     @endauth
 </nav>

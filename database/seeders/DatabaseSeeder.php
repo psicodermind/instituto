@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             TeacherSeeder::class,
-            ProjectSeeder::class
+            ProjectSeeder::class,
+            StudentSeeder::class,
         ]);
 
     }
