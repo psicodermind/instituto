@@ -30,11 +30,10 @@
                     @endforeach
                         <td>
                             <form action="{{route("$resource.destroy",$fila->id)}}?page={{$page}}" method="POST">
-                            <form action="/teachers/delete/{{$fila->id}}?page={{$page}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Borrar" class="btn btn-warning"
-                                       onclick="return confirm('Seguro que quiers borrar')"
+                                <input type="button" value="Borrar" class="btn btn-warning"
+                                       onclick="confirmarDelete(this)"
                                 >
                             </form>
                         </td>
@@ -50,3 +49,17 @@
         {{$filas->links()}}
     </div>
 </div>
+<script>
+    function confirmarDelete (button){
+        Swal.fire({
+            title: "Seguro que quieres borrar",
+            icon: "question",
+            showCancelButton:true,
+            confirmButtonText: "Borrar definitivo"
+        }).then( (result)=>{
+            if (result.isConfirmed)
+                button.closest('form').submit()
+            }
+        );
+    }
+</script>

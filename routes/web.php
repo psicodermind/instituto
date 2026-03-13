@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\StudentController;
 
 
 
@@ -45,6 +46,7 @@ Route::post("set_lang",LangController::class)->name("set_lang");
 
 Route::resource("projects", ProjectController::class)->middleware('auth');
 Route::resource("teachers", TeacherController::class)->middleware('auth');
+Route::resource("students", StudentController::class)->middleware('auth');
 
 
 
