@@ -9,13 +9,13 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('Title')" />
                 <x-text-input
-                    id="name"
+                    id="title"
                     class="block mt-1 w-full"
                     type="text"
-                    name="name"
-                    value="{{$project->name}}"
+                    name="title"
+                    value="{{$project->title}}"
                     required
                 />
             </div>

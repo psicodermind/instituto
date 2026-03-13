@@ -15,12 +15,7 @@ class ProjectController extends Controller
     {
         //Obtener todos los proyectos
         $projects = Project::paginate(5);
-        $campos =
-            [
-                "name" => "Nombre",
-                "description" => "Descripción",
-                "start_date" => "Fecha de inicio",
-                "hours" => "Horas"];
+        $campos = Project::getLabels();
 
         //Devolver un html  donde los  muestre, retornaré la vista y le paso los proyectos
 //        return view('projects.index',['projects'=>$projects]);

@@ -9,7 +9,7 @@ class Project extends Model
 {
     /** @use HasFactory<\Database\Factories\ProjectFactory> */
     use HasFactory;
-    // protected $fillable = ['name', 'description','hours','start_date'];
+    protected $fillable = ['title', 'description','hours','start_date'];
     //nombre de tabla
     protected $table = "projects";
     //nombre de la clave
@@ -21,6 +21,9 @@ class Project extends Model
 
     //Espera tener los campos create_at y update_at
     public $timestamps = true;
+    public static function getLabels(){
+        return __("project");
+    }
 
 
 }
