@@ -44,7 +44,21 @@
                     title="Gestión de Profesores"
                     description="Vamos a ver un Crud de los Profesores"
                     ref="{{route('teachers.index')}}" />
-
+            <x-card :label="__('Ver Estudiantes')"
+                    :img="asset('/images/student.jpeg')"
+                    title="Gestión de Estudiantes"
+                    description="Vamos a ver un Crud de los Estudiantes"
+                    ref="{{route('teachers.index')}}" />
+            <x-card :label="__('Ver  Registrados sin rol')"
+                    :img="asset('/images/registered.jpeg')"
+                    title="Gestión de Usuarios solo logueados sin rol"
+                    description="Vamos a ver un Crud de los logueados"
+                    ref="{{route('teachers.index')}}" />
+            <x-card :label="__('Ver  Usuarios')"
+                    :img="asset('/images/user.jpeg')"
+                    title="Gestión de todos los usuarios"
+                    description="Vamos a ver un Crud de los Usuarios"
+                    ref="{{route('users.index')}}" />
 
         </div>
     @endauth
