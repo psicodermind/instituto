@@ -12,7 +12,7 @@ class Task extends Model
 
   	protected $fillable = ['name', 'description', 'priority', 'status'];
 
-          public static function getFilds(){
-            return "__(tasks.fields)";
+          public static function getFields(){
+            return __("tasks.fields");
         }
 }

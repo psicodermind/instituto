@@ -12,7 +12,7 @@ class Project extends Model
 
   	protected $fillable = ['name', 'description', 'hours', 'start_date'];
 
-          public static function getFilds(){
-            return "__(projects.fields)";
+          public static function getFields(){
+            return __("projects.fields");
         }
 }

@@ -8,7 +8,7 @@
 
 
 
-<a href="{{route("$resource.create")}}" class="btn btn-primary">Añadir {{$table}}</a>
+<a href="{{route("crud.create", $resource)}}" class="btn btn-primary">Añadir {{$table}}</a>
 <div class="flex justify-center ">
     <div class="overflow-x-auto h-96 ">
         <table class="table table-xs table-pin-rows table-pin-cols">
@@ -26,12 +26,11 @@
             @foreach($rows as $row)
                 <tr class="lg:text-sm">
 
-
                     @foreach($fields as $atribute => $value)
                         <td>{{$row->{$atribute} }}</td>
                     @endforeach
                         <td>
-                            <form action="{{route("$resource.destroy",$row->id)}}?page={{$page}}" method="POST">
+                            <form action="{{route("crud.destroy",[$resource, $row->id])}}?page={{$page}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="button" value="Borrar" class="btn btn-warning"
@@ -40,7 +39,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href="{{route("$resource.edit", $row->id)}}?page={{$page}}" class="btn btn-primary">Editar</a>
+                            <a href="{{route("crud.edit",[$resource, $row->id])}}?page={{$page}}" class="btn btn-primary">Editar</a>
                         </td>
 
                 </tr>
