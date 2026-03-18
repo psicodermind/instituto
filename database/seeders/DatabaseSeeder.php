@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             [
                 RolSeeders::class,
                 ProjectSeeder::class,
-                UserSeeders::class,
+                UserSeeder::class,
+                TaskSeeder::class,
             ]
         );
     }

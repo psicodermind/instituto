@@ -17,10 +17,14 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => $this->faker->text(),
-            'description' => $this->faker->text(),
+        $projects = config('projects');
+        $project = array_rand($projects);
 
+        return [
+            'title' => $project,
+            'description' => $projects[$project],
+            "hours"=> fake()->numberBetween(20,200),
+            "start_date"=>fake()->date()
             //
         ];
     }

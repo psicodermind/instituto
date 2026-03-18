@@ -6,6 +6,7 @@
 			'dni'=>'',
 			'phone'=>'',
 			'password'=>'',
+			'department'=>'',
 ],
 
         'table'=>''

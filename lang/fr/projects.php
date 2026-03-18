@@ -1,8 +1,11 @@
 <?php
-return [
-            "title" => "Title",
-            "description" => "Description",
-            "hours" => "Hours",
-            "start_date" => "Start Date",
+    return [
+        'fields'=>[
+			'name'=>'',
+			'description'=>'',
+			'hours'=>'',
+			'start_date'=>'',
+],
 
-];
+        'table'=>''
+    ];

@@ -2,10 +2,9 @@
     return [
         'fields'=>[
 			'name'=>'',
-			'email'=>'',
-			'dni'=>'',
-			'phone'=>'',
-			'password'=>'',
+			'description'=>'',
+			'priority'=>'',
+			'status'=>'',
 ],
 
         'table'=>''
