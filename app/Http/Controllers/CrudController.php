@@ -26,7 +26,7 @@ class CrudController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $resource, string $id)
     {
         //
     }
@@ -34,7 +34,7 @@ class CrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $resource, Request $request, string $id)
     {
         //
     }
@@ -42,7 +42,7 @@ class CrudController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $resource, string $id)
     {
         //
     }

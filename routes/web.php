@@ -44,8 +44,6 @@ Route::fallback(function () {
 Route::post("set_lang", LangController::class)->name("set_lang");
 //Route::post("set_lang", [LangController::class, "__invoke"]);
 Route::middleware('auth')->group(function () {
-
-
     Route::get("{resource}", [CrudController::class, "index"])->name("crud.index");//Listado
 //Creaer un recurso
     Route::get("{resource}/create", [CrudController::class, "create"])->name("crud.create");
@@ -55,7 +53,7 @@ Route::middleware('auth')->group(function () {
 //Actualizacion
     Route::get("{resource}/{id}/edit", [CrudController::class, "edit"])->name("crud.edit");
     Route::put("{resource}/{id}", [CrudController::class, "update"])->name("crud.update");
-})
+});
 
 
 
