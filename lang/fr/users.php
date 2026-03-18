@@ -1,12 +1,12 @@
 <?php
     return [
         'fields'=>[
-			'name'=>'',
-			'email'=>'',
-			'dni'=>'',
-			'phone'=>'',
-			'password'=>'',
+            'name' => 'Nom',
+            'email' => 'Email',
+            'dni' => 'DNI',
+            'phone' => 'Téléphone',
+            'password' => 'Mot de passe',
 ],
 
-        'table'=>''
+        'table'=>'Utilisateurs'
     ];

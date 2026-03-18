@@ -1,11 +1,11 @@
 <?php
-    return [
-        'fields'=>[
-			'name'=>'',
-			'description'=>'',
-			'hours'=>'',
-			'start_date'=>'',
-],
+return [
+    'fields' => [
+        'name' => 'Nom',
+        'description' => 'Description',
+        'hours' => 'Heures',
+        'start_date' => 'Date de début',
+    ],
 
-        'table'=>''
-    ];
+    'table' => 'Projets'
+];

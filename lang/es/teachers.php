@@ -1,13 +1,14 @@
 <?php
     return [
         'fields'=>[
-			'name'=>'',
-			'email'=>'',
-			'dni'=>'',
-			'phone'=>'',
-			'password'=>'',
-			'department'=>'',
+            'name'=>'Nombre',
+            'email'=>'Email',
+            'dni'=>'DNI',
+            'phone'=>'Teléfono',
+            'password'=>'Contraseña',
+
+			'department'=>'Departamento',
 ],
 
-        'table'=>''
+        'table'=>'Profesores'
     ];
