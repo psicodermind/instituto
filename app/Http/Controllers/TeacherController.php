@@ -18,9 +18,9 @@ class TeacherController extends Controller
 
         $rows = User::role("teacher")->paginate(5);
         $datos = User::getLabels();
-
         $fields =$datos['fields'];
-        $fields[]=$datos['department'];
+        $fields['department']=$datos['department'];
+
         $table= $datos['rol']['teacher'];
 
         return view('teachers.index', compact('rows', 'fields','table'));

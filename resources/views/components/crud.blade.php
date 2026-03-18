@@ -7,6 +7,7 @@
 ])
 
 
+
 <a href="{{route("$resource.create")}}" class="btn btn-primary">Añadir {{$table}}</a>
 <div class="flex justify-center ">
     <div class="overflow-x-auto h-96 ">
