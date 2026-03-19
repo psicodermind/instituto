@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 use App\Models\Teacher;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
@@ -13,11 +14,14 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::paginate(5);
-        $campos =Teacher::getLabels();
+        $rows = User::role("teacher")->paginate(10);
+        $datos=User::getLabels();
 
+        $fie =User::getLabels()['fields'];
+        $campos[]=User::$datos()['department'];
+        $tabla=$datos['rol']['teacher'];
 
-        return view('teachers.index', compact('teachers', 'campos'));
+        return view('teachers.index', compact('teachers', 'campos', 'tabla'));
         //
     }
 

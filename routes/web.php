@@ -44,9 +44,7 @@ Route::fallback(function () {
 //Route::post("set_lang", [LangController::class, "__invoke"]);
 Route::post("set_lang",LangController::class)->name("set_lang");
 
-Route::resource("projects", ProjectController::class)->middleware('auth');
-Route::resource("teachers", TeacherController::class)->middleware('auth');
-Route::resource("students", StudentController::class)->middleware('auth');
+Route::get("{resource}",[CrudController::class, "index"])->name("crud.index");
 
 
 

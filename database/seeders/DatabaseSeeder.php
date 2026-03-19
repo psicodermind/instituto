@@ -15,15 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            "name" => "Geraldine",
-            "email" => "a@a.com",
-            "password" => bcrypt("12345678")
-        ]);
+
         $this->call([
-            TeacherSeeder::class,
+            RolSeeders::class,
+            UserSeeder::class,
             ProjectSeeder::class,
-            StudentSeeder::class,
         ]);
 
     }

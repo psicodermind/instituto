@@ -1,48 +1,51 @@
 <x-layouts.layout>
     @guest
-    <div
-        class="hero min-h-full"
-        style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);"
-    >
-        <div class="hero-overlay"></div>
-        <div class="hero-content text-neutral-content text-center">
-            <div class="max-w-md">
-                <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-                <p class="mb-5">
-                    {{date("H:m:s")}}
+        <div
+            class="hero min-h-full"
+            style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)"
+        >
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-neutral-content text-center">
+                <div class="max-w-md">
+                    <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+                    <p class="mb-5">
+                        {{date("H:m:s")}}
 
-                    Usuario conectado {{$nombre}}
+                        Usuario conectado {{$nombre}}
                     <h2>Número generado <span class="text-3xl text-red-100  ">{{$numero}}</h2>
-                </p>
-                <button class="btn btn-primary">Get Started</button>
+                    </p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
             </div>
         </div>
-    </div>
     @endguest
-        @auth
-            <main class="lg:h-mainbg-base-200
-                     grid gap-6 p-6
+    @auth
+        <div class="lg:h-main bg-base-200
+        grid
                      grid-cols-1
                      sm:grid-cols-2
                      lg:grid-cols-3
+                     gap-6 p-6
                      items-start
                      overflow-y-auto">
 
-                {{-- Ejemplo de tarjetas --}}
-                <div class="card bg-base-100 image-full w-96 shadow-sm">
-                    <figure>
-                        <img
-                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                            alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Card Title</h2>
-                        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        @endauth
+            {{-- Ejemplo de tarjetas --}}
+            <x-card>
+                <x-slot name="label">{{__("Ver proyectos")}}</x-slot>
+                <x-slot name="img">{{asset('/images/projects.png')}}</x-slot>
+                <x-slot name="title">Gestión de Proyectos</x-slot>
+                <x-slot name="description">Vamos a ver un Crud con los proyectos</x-slot>
+                <x-slot name="ref">{{route("projects.index")}}</x-slot>
+
+            </x-card>
+            @foreach(config('resources') as $resource)
+                <x-card :label={{"__('Ver '($resource))"}}
+                        :img="asset('/images/$resource.jpeg')"
+                        title="Gestión de {{$resource}}"
+                        description="'Vamos a ver un Crud de los {{$resource}}'
+                        ref="{{route('techers.index')}}" />
+
+            @endforeach
+        </div>
+    @endauth
 </x-layouts.layout>
