@@ -13,7 +13,7 @@ return [
         "fields" => ['name', 'email', 'dni', 'phone', 'password'],
     ],
     "projects" => [
-        "fields" => ['name', 'description', 'hours', 'start_date'],
+        "fields" => ['title', 'description', 'hours', 'start_date'],
     ],
     "tasks" => [
         "fields" => ['name', 'description', 'priority', 'status'],
