@@ -14,7 +14,10 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
         Project::factory()->count(10)->create();
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/crudGenerico
         //
 
     }

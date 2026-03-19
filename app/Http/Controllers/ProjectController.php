@@ -17,6 +17,10 @@ class ProjectController extends Controller
         $projects = Project::paginate(5);
         $campos = Project::getLabels();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/crudGenerico
         //Devolver un html  donde los  muestre, retornaré la vista y le paso los proyectos
 //        return view('projects.index',['projects'=>$projects]);
         return view('projects.index', compact('projects', 'campos'));
@@ -39,7 +43,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+<<<<<<< HEAD
         $datos = $request->validated();
+=======
+        $datos = $request->input();
+>>>>>>> upstream/crudGenerico
         Project::create($datos);
         return redirect()->route('projects.index');
 
@@ -69,9 +77,16 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+<<<<<<< HEAD
         $datos = $request->except(['_token', '_method']);  // ← cambiar esta línea
         $project->update($datos);
         return redirect()->route('projects.index');
+=======
+        $datos = $request->input();
+        $project->update($datos);
+        return redirect()->route('projects.index');
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**

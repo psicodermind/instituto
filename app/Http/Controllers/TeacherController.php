@@ -12,6 +12,7 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
+<<<<<<< HEAD
     public function index()
     {
         $rows = User::role("teacher")->paginate(10);
@@ -22,6 +23,20 @@ class TeacherController extends Controller
         $tabla=$datos['rol']['teacher'];
 
         return view('teachers.index', compact('teachers', 'campos', 'tabla'));
+=======
+    public function index(int $page=1)
+    {
+//        dd($page);
+
+        $rows = User::role("teacher")->paginate(5);
+        $datos = User::getLabels();
+        $fields =$datos['fields'];
+        $fields['department']=$datos['department'];
+
+        $table= $datos['rol']['teacher'];
+
+        return view('teachers.index', compact('rows', 'fields','table'));
+>>>>>>> upstream/crudGenerico
         //
     }
 
@@ -58,7 +73,13 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
+<<<<<<< HEAD
         return view('teachers.edit', compact('teacher'));
+=======
+        $page = request()->get("page");
+
+        return view('teachers.edit', compact('teacher', 'page'));
+>>>>>>> upstream/crudGenerico
         //
     }
 
@@ -67,9 +88,16 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
+<<<<<<< HEAD
         $datos = $request->input();
         $teacher->update($datos);
         return redirect()->route('teachers.index');
+=======
+        $page = request()->get("page");
+        $datos = $request->input();
+        $teacher->update($datos);
+        return redirect()->route('teachers.index',['page'=>$page]);
+>>>>>>> upstream/crudGenerico
 
         //
     }
@@ -79,8 +107,22 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+<<<<<<< HEAD
         $teacher->delete();
         return redirect()->route('teachers.index');
+=======
+        $page = request()->get('page');
+
+        $lastpage = Teacher::paginate()->lastPage();
+        if ($page > $lastpage) {
+            $page--;
+        }
+
+
+        $teacher->delete();
+        return redirect()->route('teachers.index', ['page'=>$page]);
+//        return redirect()->back();
+>>>>>>> upstream/crudGenerico
 
         //
     }

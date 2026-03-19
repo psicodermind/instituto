@@ -9,6 +9,7 @@ class Project extends Model
 {
     /** @use HasFactory<\Database\Factories\ProjectFactory> */
     use HasFactory;
+<<<<<<< HEAD
     protected $fillable = ['title', 'description','hours','start_date'];
     //nombre de tabla
     protected $table = "projects";
@@ -26,4 +27,12 @@ class Project extends Model
     }
 
 
+=======
+
+  	protected $fillable = ['name', 'description', 'hours', 'start_date'];
+
+          public static function getFields(){
+            return __("projects.fields");
+        }
+>>>>>>> upstream/crudGenerico
 }

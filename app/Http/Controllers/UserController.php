@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\User;
+>>>>>>> upstream/crudGenerico
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,6 +15,18 @@ class UserController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+=======
+        $rows = User::Paginate(5);
+        $datos = User::getLabels();
+
+        $fields =$datos['fields'];
+
+        $table= $datos['rol']['user'];
+
+        return view('users.index', compact('rows', 'fields','table'));
+        //
+>>>>>>> upstream/crudGenerico
         //
     }
 

@@ -54,4 +54,7 @@ return $proyectos = [
     "Reconocimiento_Texto" => "OCR para extracción de texto de documentos y facturas.",
     "App_Cultura" => "Aplicación para difusión de eventos culturales y artísticos."
 ];
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/crudGenerico

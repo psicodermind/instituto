@@ -41,7 +41,11 @@
                 </select>
 
                 @error("department")
+<<<<<<< HEAD
                 <div class="text-xm text-red-200"> {{$message}}</div>
+=======
+                    <div class="text-xm text-red-200"> {{$message}}</div>
+>>>>>>> upstream/crudGenerico
                 @enderror
             </div>
 

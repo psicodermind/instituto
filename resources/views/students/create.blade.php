@@ -2,7 +2,12 @@
 
     <div class="flex justify-center items-center min-h-full bg-gray-200">
 
+<<<<<<< HEAD
         <form method="POST" action="{{ route('students.store') }}" class="bg-white p-4 rounded-2xl">
+=======
+        <form method="POST" action="{{ route('projects.store') }}" class="bg-white p-4 rounded-2xl">
+
+>>>>>>> upstream/crudGenerico
             @csrf
 
             <!-- Name -->
@@ -13,11 +18,16 @@
                     class="block mt-1 w-full"
                     type="text"
                     name="name"
+<<<<<<< HEAD
                     value="{{ old('name') }}"
+=======
+                    value="{{old('name')}}"
+>>>>>>> upstream/crudGenerico
                     required
                 />
             </div>
 
+<<<<<<< HEAD
             <!-- Phone -->
             <div class="mt-4">
                 <x-input-label for="phone" :value="__('Phone')" />
@@ -65,12 +75,52 @@
                     type="text"
                     name="email"
                     value="{{ old('email') }}"
+=======
+            <!-- Description -->
+            <div class="mt-4">
+                <x-input-label for="description" :value="__('Description')" />
+                <textarea
+                    id="description"
+                    name="description"
+                    class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <!-- Hours -->
+            <div class="mt-4">
+                <x-input-label for="hours" :value="__('Hours')" />
+                <x-text-input
+                    id="hours"
+                    class="block mt-1 w-full"
+                    type="number"
+                    name="hours"
+                    min="0"
+                />
+                @error("hours")
+                    <div class="text-xm text-red-200"> {{$message}}</div>
+                @enderror
+            </div>
+
+            <!-- Start Date -->
+            <div class="mt-4">
+                <x-input-label for="start_date" :value="__('Start date')" />
+                <x-text-input
+                    id="start_date"
+                    class="block mt-1 w-full"
+                    type="date"
+                    name="start_date"
+>>>>>>> upstream/crudGenerico
                 />
             </div>
 
             <div class="flex justify-end mt-6">
                 <x-primary-button>
+<<<<<<< HEAD
                     {{ __('Create Student') }}
+=======
+                    {{ __('Create Project') }}
+>>>>>>> upstream/crudGenerico
                 </x-primary-button>
             </div>
 

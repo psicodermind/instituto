@@ -15,8 +15,13 @@ class StudentController extends Controller
     {
         $students = Student::paginate(5);
         $campos = Student::getLabels();
+<<<<<<< HEAD
 
         return view('students.index', compact('students', 'campos'));
+=======
+        return view('students.index', compact('students', 'campos'));
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**
@@ -25,6 +30,10 @@ class StudentController extends Controller
     public function create()
     {
         return view('students.create');
+<<<<<<< HEAD
+=======
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**
@@ -32,8 +41,15 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
+<<<<<<< HEAD
         Student::create($request->input());
         return redirect()->route('students.index');
+=======
+        $datos = $request->input();
+        Student::created($datos);
+        return redirect()->route('students.index');
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**
@@ -50,6 +66,10 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         return view('students.edit', compact('student'));
+<<<<<<< HEAD
+=======
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**
@@ -57,8 +77,15 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
+<<<<<<< HEAD
         $student->update($request->input());
         return redirect()->route('students.index');
+=======
+        $datos = $request->input();
+        $student->updated($datos);
+        return redirect()->route('students.index');
+        //
+>>>>>>> upstream/crudGenerico
     }
 
     /**
@@ -66,7 +93,14 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+<<<<<<< HEAD
         $student->delete();
         return redirect()->route('students.index');
+=======
+        $page = request()->get('page');
+        $student->delete();
+        return redirect()->route('students.index', ['page' => $page]);
+        //
+>>>>>>> upstream/crudGenerico
     }
 }
