@@ -17,7 +17,7 @@ h-header bg-header
 
         @endguest
         @auth
-            <span class="text-green-800 text-xl">{{auth()->user()->name}}
+            <span class="text-white-800 text-xl">{{auth()->user()->name}}
             <form action="{{route("logout")}}" method="POST">
                 @csrf
                 <button class="btn btn-primary" type="submit">Logout</button>
