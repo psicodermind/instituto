@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
-use App\Models\Teacher;
-=======
 use App\Http\Controllers\TeacherController;
->>>>>>> upstream/crudGenerico
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,14 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-<<<<<<< HEAD
-        $this->call([
-            RolSeeders::class,
-            UserSeeder::class,
-            ProjectSeeder::class,
-        ]);
-
-=======
 
 
         $this->call(
@@ -38,6 +26,5 @@ class DatabaseSeeder extends Seeder
                 TaskSeeder::class,
             ]
         );
->>>>>>> upstream/crudGenerico
     }
 }

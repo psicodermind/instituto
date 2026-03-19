@@ -2,35 +2,31 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-=======
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
->>>>>>> upstream/crudGenerico
 
 class CrudController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-<<<<<<< HEAD
-    public function index()
-    {
-=======
     public function index(string $resource)
     {
         //Recuperar todos los datos de resources del config
 
         $config =config("resources.$resource");
-        $resource_name = $config['resource']??$resource;
+        $resource_name = $config['resource'] ?? $resource;
 
         //Resolvemos de forma dinámica el modelo
-        $model = "App\\Models\\".Str::studly(Str::singular($resourcename));
+        $model = "App\\Models\\".Str::studly(Str::singular($resource_name));
+
+
 
         //Preparamos la consuta
-        $query = $model::query();
+
+        $rows = $model::rol($rol)->paginate(5);
+        $rows = $model::paginate(5);
 
         //Aplicamos el filtro de rol si tiene
         if (isset($config['role']))
@@ -50,18 +46,13 @@ class CrudController extends Controller
 
 
         return "<h1>Voy a gestionar $resource</h1>";
->>>>>>> upstream/crudGenerico
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-<<<<<<< HEAD
-    public function store(Request $request)
-=======
     public function store(string $resource,Request $request)
->>>>>>> upstream/crudGenerico
     {
         //
     }
@@ -69,11 +60,7 @@ class CrudController extends Controller
     /**
      * Display the specified resource.
      */
-<<<<<<< HEAD
-    public function show(string $id)
-=======
     public function show(string $resource, string $id)
->>>>>>> upstream/crudGenerico
     {
         //
     }
@@ -81,11 +68,7 @@ class CrudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
-    public function update(Request $request, string $id)
-=======
     public function update(string $resource, Request $request, string $id)
->>>>>>> upstream/crudGenerico
     {
         //
     }
@@ -93,10 +76,6 @@ class CrudController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
-    public function destroy(string $id)
-    {
-=======
     public function destroy(string $resource, int $id)
     {
         $model = "App\\Models\\".Str::studly(Str::singular($resource));
@@ -105,7 +84,6 @@ class CrudController extends Controller
         return redirect(route("crud.index", $resource));
         //TODO si es rol, tengo que buscar el modelo de ese rol
 
->>>>>>> upstream/crudGenerico
         //
     }
 }

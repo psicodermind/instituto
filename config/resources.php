@@ -1,14 +1,5 @@
 <?php
 return [
-<<<<<<< HEAD
-    'teachers',
-    'students',
-    'projects',
-    'tasks',
-    'guests',
-
-];
-=======
     "teachers" => [
         "role" => "teacher",
         "resource" => "users",
@@ -23,7 +14,6 @@ return [
     ],
     "projects" => [
         "fields" => ['name', 'description', 'hours', 'start_date'],
-
     ],
     "tasks" => [
         "fields" => ['name', 'description', 'priority', 'status'],
@@ -31,10 +21,5 @@ return [
     "guests" => [
         "role" => "guest",
         "resource" => "users",
-    ],//Son usuarios registrados que no son studiantes, teachers .
-
-
+    ],
 ];
-
-
->>>>>>> upstream/crudGenerico

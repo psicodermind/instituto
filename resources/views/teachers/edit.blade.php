@@ -1,16 +1,10 @@
 <x-layouts.layout>
 
-<<<<<<< HEAD
-    <div class="flex justify-center items-center min-h-full bg-gray-200">
-
-        <form method="POST" onsubmit="return confirm ('quieres actualizar este profesor')"  action="{{ route('teachers.update', $teacher->id) }}" class="bg-white p-4 rounded-2xl">
-=======
 
 
     <div class="flex justify-center items-center min-h-full bg-gray-200">
 
         <form method="POST" onsubmit="return confirm ('quieres actualizar este profesor')"  action="{{ route('teachers.update', $teacher->id) }}?page={{request()->get('page') }}" class="bg-white p-4 rounded-2xl">
->>>>>>> upstream/crudGenerico
             @csrf
             @method('PATCH')
 
@@ -51,11 +45,7 @@
                 </select>
 
                 @error("department")
-<<<<<<< HEAD
-                <div class="text-xm text-red-200"> {{$message}}</div>
-=======
                     <div class="text-xm text-red-200"> {{$message}}</div>
->>>>>>> upstream/crudGenerico
                 @enderror
             </div>
 

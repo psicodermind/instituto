@@ -9,15 +9,6 @@
 
             <!-- Name -->
             <div>
-<<<<<<< HEAD
-                <x-input-label for="name" :value="__('Title')" />
-                <x-text-input
-                    id="title"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="title"
-                    value="{{$project->title}}"
-=======
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input
                     id="name"
@@ -25,7 +16,6 @@
                     type="text"
                     name="name"
                     value="{{$project->name}}"
->>>>>>> upstream/crudGenerico
                     required
                 />
             </div>
@@ -54,11 +44,7 @@
                     value="{{$project->hours}}"
                 />
                 @error("hours")
-<<<<<<< HEAD
-                <div class="text-xm text-red-200"> {{$message}}</div>
-=======
                     <div class="text-xm text-red-200"> {{$message}}</div>
->>>>>>> upstream/crudGenerico
                 @enderror
             </div>
 

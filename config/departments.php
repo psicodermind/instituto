@@ -18,9 +18,4 @@ return
         "Artes Gráficas",
         "Orientación",
         "FOL (Formación y Orientación Laboral)"
-<<<<<<< HEAD
     ];
-
-=======
-];
->>>>>>> upstream/crudGenerico

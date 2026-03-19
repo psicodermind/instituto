@@ -5,14 +5,12 @@ use App\Http\Controllers\MainController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\StudentController;
-=======
->>>>>>> upstream/crudGenerico
+
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LangController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
 
@@ -47,11 +45,11 @@ Route::fallback(function () {
 });
 Route::post("set_lang", LangController::class)->name("set_lang");
 //Route::post("set_lang", [LangController::class, "__invoke"]);
-<<<<<<< HEAD
+
 Route::post("set_lang",LangController::class)->name("set_lang");
 
 Route::get("{resource}",[CrudController::class, "index"])->name("crud.index");
-=======
+
 Route::middleware('auth')->group(function () {
     Route::get("{resource}", [CrudController::class, "index"])->name("crud.index");//Listado
 //Creaer un recurso
@@ -64,10 +62,6 @@ Route::middleware('auth')->group(function () {
     Route::put("{resource}/{id}", [CrudController::class, "update"])->name("crud.update");
 });
 
-
-
-
->>>>>>> upstream/crudGenerico
 
 
 

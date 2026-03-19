@@ -8,16 +8,7 @@
             <div class="hero-content text-neutral-content text-center">
                 <div class="max-w-md">
                     <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-<<<<<<< HEAD
-                    <p class="mb-5">
-                        {{date("H:m:s")}}
 
-                        Usuario conectado {{$nombre}}
-                    <h2>Número generado <span class="text-3xl text-red-100  ">{{$numero}}</h2>
-                    </p>
-=======
-
->>>>>>> upstream/crudGenerico
                     <button class="btn btn-primary">Get Started</button>
                 </div>
             </div>
@@ -34,22 +25,6 @@
                      overflow-y-auto">
 
             {{-- Ejemplo de tarjetas --}}
-<<<<<<< HEAD
-            <x-card>
-                <x-slot name="label">{{__("Ver proyectos")}}</x-slot>
-                <x-slot name="img">{{asset('/images/projects.png')}}</x-slot>
-                <x-slot name="title">Gestión de Proyectos</x-slot>
-                <x-slot name="description">Vamos a ver un Crud con los proyectos</x-slot>
-                <x-slot name="ref">{{route("projects.index")}}</x-slot>
-
-            </x-card>
-            @foreach(config('resources') as $resource)
-                <x-card :label={{"__('Ver '($resource))"}}
-                        :img="asset('/images/$resource.jpeg')"
-                        title="Gestión de {{$resource}}"
-                        description="'Vamos a ver un Crud de los {{$resource}}'
-                        ref="{{route('techers.index')}}" />
-=======
 
             @foreach(config("resources") as $resource =>$data )
                 <x-card :label='__("Ver $resource")'
@@ -57,7 +32,6 @@
                         title="Gestión de {{$resource}}"
                         description="Vamos a ver un Crud de los {{$resource}}"
                         :ref='route("crud.index", $resource)' />
->>>>>>> upstream/crudGenerico
 
             @endforeach
         </div>
