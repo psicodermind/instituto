@@ -7,5 +7,6 @@
 			'start_date'=>'Start Date',
 ],
 
-        'table'=>'Projects'
+        'table'=>'Projects',
+
     ];

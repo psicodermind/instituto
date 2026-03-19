@@ -1,12 +1,13 @@
 <?php
-return [
-    'fields'=>[
-        'name'=>'Name',
-        'email'=>'Email',
-        'dni'=>'ID ',
-        'phone'=>'Phone',
-        'password'=>'Password',
-    ],
+    return [
+        'fields'=>[
+			'name'=>'Name',
+			'email'=>'Email',
+			'dni'=>'Dni',
+			'phone'=>'Phone',
+			'password'=>'Password',
+],
 
-    'table'=>'Guests'
-];
+        'table'=>'Guests',
+
+    ];

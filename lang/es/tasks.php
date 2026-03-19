@@ -1,11 +1,12 @@
 <?php
-    return [
-        'fields'=>[
-			'name'=>'Nombre',
-			'description'=>'Descripcion',
-			'priority'=>'Proridad',
-			'status'=>'Estado',
-],
+return [
+    'fields'=>[
+        'name'=>'Nombre',
+        'description'=>'Descripción',
+        'priority'=>'Prioridad',
+        'status'=>'Estado',
+    ],
 
-        'table'=>'Tareas'
-    ];
+    'table'=>'Tareas',
+
+];

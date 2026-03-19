@@ -44,11 +44,12 @@ class GenerateModels extends Command
 
             $fillable = $this->getStringFillable($data['fields']);
             $getFields = $this->getStringGetFields($resource);
+            $getTableName=$this->getStringGetTableName($resource);
 
             //necesito la ubicación completa del fichero del modelo que quiero modificar
             $modelPath=app_path("Models/$model.php");
 
-            $this->getContentFileModel($modelPath, $fillable, $getFields );
+            $this->getContentFileModel($modelPath, $fillable, $getFields, $getTableName );
 
 
             //php artisan make:model $resource -fms
@@ -80,13 +81,21 @@ class GenerateModels extends Command
 FIN;
         return $function;
     }
-    private function getContentFileModel(string $modelPath, string $fillable, string $getFields){
+    private function getStringTableName(string $resource){
+        $function =<<<FIN
+        public static function getTableName(){
+            return "__($resource.table)";
+        }
+FIN;
+        return $function;
+    }
+    private function getContentFileModel(string $modelPath, string $fillable, string $getFields, string $getTableName){
         //Tomamos el contenido completo del fichero
         //remplazamos la palabra HasFactory; por HasFactory; $fillable $getFields
         //Escribimo de nuevo en el ficheor en nuevo contenido
         $content = file_get_contents($modelPath);
         $searach= "use HasFactory;";
-        $replace = "use HasFactory;\n\n  $fillable\n  $getFields";
+        $replace = "use HasFactory;\n\n  $fillable\n  $getFields\n $getTableName";
         $content = str_replace($searach, $replace, $content);
         file_put_contents($modelPath, $content);
 

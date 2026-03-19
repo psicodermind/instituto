@@ -3,11 +3,12 @@
         'fields'=>[
 			'name'=>'Name',
 			'email'=>'Email',
-			'dni'=>'ID',
+			'dni'=>'Dni',
 			'phone'=>'Phone',
 			'password'=>'Password',
 			'department'=>'Department',
 ],
 
-        'table'=>'Teachers'
+        'table'=>'Teachers',
+
     ];

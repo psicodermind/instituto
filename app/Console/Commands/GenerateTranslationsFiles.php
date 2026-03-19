@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use OpenAI\Client;
 
 class GenerateTranslationsFiles extends Command
 {
@@ -31,14 +33,14 @@ class GenerateTranslationsFiles extends Command
 
         foreach ($langs as $lang=>$data){
             foreach ($resources as $resource=>$data){
-                $content =$this->getContentFileTranslations($resource, $data);
+                $content =$this->getContentFileTranslations($resource, $data, $lang);
                 $field_path = lang_path("$lang/$resource.php");
                 file_put_contents($field_path, $content);
 
             }
         }
     }
-    private function getContentFileTranslations($resource, $data){
+    private function getContentFileTranslations($resource, $data, $lang){
         //No es lo mismo si es rol o no
         if (isset($data['role'])) {
             //Obtengo los atributos del modelo de este rol
@@ -57,18 +59,34 @@ class GenerateTranslationsFiles extends Command
 
         //Preparo el texto para el fichero
         $fieldArray="";
-        foreach ($fields as $field)
-            $fieldArray.="\t\t\t'$field'=>'',\n";
+        foreach ($fields as $field) {
+//            $field_translate = $this->translateWithAI($field, $lang);
+            $fieldArray .= "\t\t\t'$field'=>'".Str::headline($field)."',\n";
+        }
 
         //Genero el texto que tengo que incluir en el fichero
+        $table = Str::headline($resource);
         $content=<<<FIN
 <?php
     return [
         'fields'=>[\n$fieldArray],\n
-        'table'=>''
+        'table'=>'$table',\n
     ];
 FIN;
 return $content;
+    }
+    private function translateWithAI($tocken, $lang){
+        $client = \OpenAI::client(env('OPENAI_API_KEY'));
+        $prompt = "Traduce $tocken  a $lang para una interfaz de usuario. Retorna solo la palabra";
+        $response = $client->chat()->create([
+            'model' => 'gpt-4.1-mini',
+            'messages' => [
+                ['role' => 'user', 'content' => $prompt],
+            ],
+        ]);
+        return json_decode($response->choices[0]->message->content, true);
+
+
 
 
     }

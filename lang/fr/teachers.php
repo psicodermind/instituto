@@ -2,12 +2,10 @@
 return [
     'fields' => [
         'name' => 'Nom',
-        'email' => 'Email',
-        'dni' => 'DNI',
-        'phone' => 'Téléphone',
-        'password' => 'Mot de passe',
-        'department' => 'Département',
+        'description' => 'Description',
+        'priority' => 'Priorité',
+        'status' => 'Statut',
     ],
 
-    'table' => 'Professeurs'
+    'table' => 'Professeurs',
 ];

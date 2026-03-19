@@ -7,5 +7,6 @@
 			'status'=>'Status',
 ],
 
-        'table'=>'Tasks'
+        'table'=>'Tasks',
+
     ];

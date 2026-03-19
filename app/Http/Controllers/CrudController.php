@@ -13,20 +13,22 @@ class CrudController extends Controller
      */
     public function index(string $resource)
     {
-        //Recuperar todos los datos de resources
-        $rol = config("resources.$resource.role");
+        //Recuperar todos los datos de resources del config
 
-        if ($rol){
-            $resource_name = $rol?  config("resources.$resource.resource"):$resource;
+        $config =config("resources.$resource");
+        $resource_name = $config['resource']??$resource;
 
-            $model = "App\\Models\\".Str::studly(Str::singular($resource_name));
+        //Resolvemos de forma dinámica el modelo
+        $model = "App\\Models\\".Str::studly(Str::singular($resourcename));
 
-            $rows = $model::role($rol)->paginate(5);
+        //Preparamos la consuta
+        $query = $model::query();
 
-        }else{
-            $model = "App\\Models\\".Str::studly(Str::singular($resource));
-            $rows =$model::paginate(5);
-        }
+        //Aplicamos el filtro de rol si tiene
+        if (isset($config['role']))
+            $query = $query->role("{$config['role']}");
+
+        $rows=$query->paginate(5);
 
         $fields = $model::getFields();
 
@@ -70,8 +72,14 @@ class CrudController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $resource, string $id)
+    public function destroy(string $resource, int $id)
     {
+        $model = "App\\Models\\".Str::studly(Str::singular($resource));
+        $register = $model::find($id);
+        $register->delete();
+        return redirect(route("crud.index", $resource));
+        //TODO si es rol, tengo que buscar el modelo de ese rol
+
         //
     }
 }
